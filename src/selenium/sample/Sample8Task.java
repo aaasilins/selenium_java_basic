@@ -35,8 +35,16 @@ public class Sample8Task {
     @Test
     public void styleChecks() throws Exception {
 //         TODO:
+        WebElement h1 = driver.findElement(By.xpath("//h1"));
+        WebElement h2 = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div"));
+
+        //h2.getCssValue("background-color");
+
 //        check the background of top 2 sections
 //        rgba(255, 221, 221, 1);
+        assertEquals("rgba(255, 221, 221, 1)",h2.getCssValue("background-color"));
+
 //        check h1 element font-size 64px
+        assertEquals("64px", h1.getCssValue("font-size"));
     }
 }

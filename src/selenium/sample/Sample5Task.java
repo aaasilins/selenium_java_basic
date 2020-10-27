@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
@@ -34,21 +35,46 @@ public class Sample5Task {
     @Test
     public void goToAlertedPageViaButton() throws Exception {
 //         TODO:
+        String correctPage = "https://kristinek.github.io/site/examples/alerted_page";
+
 //        click on "To go to alerted page press Ok. Or stay here" button
+        driver.findElement(By.className("w3-blue")).click();
+
 //        switch to alert
+        Alert alertWindow1 = driver.switchTo().alert();
+
 //        click ok
+        alertWindow1.accept();
+
 //        switch to second alert
+        Alert alertWindow2 = driver.switchTo().alert();
+
 //        verify alert text
+        assertEquals("Booooooooo!", alertWindow2.getText());
+
 //        click ok on second alert
+        alertWindow2.accept();
+
 //        verify that the correct page is opened
+        assertEquals(driver.getCurrentUrl(), correctPage);
+
     }
 
     @Test
     public void doNotGoToAlertedPageViaButton() throws Exception {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
+        driver.findElement(By.className("w3-blue")).click();
+
 //        switch to alert
+        Alert alertWindow1 = driver.switchTo().alert();
+
 //        click cancel
+        alertWindow1.dismiss();
+
 //        verify the text on page
+        String pageText = driver.findElement(By.id("textForAlerts")).getText();
+        assertEquals("So you desided to say? Good!", pageText);
+
     }
 }

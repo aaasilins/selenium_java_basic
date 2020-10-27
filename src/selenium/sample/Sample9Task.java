@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,12 +17,17 @@ import static org.junit.Assert.assertTrue;
 
 public class Sample9Task {
     WebDriver driver;
+    private static WebDriverWait wait;
+    static long startTime;
 
     @Before
     public void openPage() {
         String libWithDriversLocation = System.getProperty("user.dir") + "\\lib\\";
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver.exe");
         driver = new ChromeDriver();
+
+        wait = (WebDriverWait) new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class);
+
         driver.get("https://kristinek.github.io/site/examples/loading_color");
     }
 
@@ -34,32 +40,69 @@ public class Sample9Task {
     public void loadGreenSleep() throws Exception {
 //         TODO:
 //         * 1) click on start loading green button
+        driver.findElement(By.xpath("//*[@id=\"start_green\"]")).click();
+
 //         * 2) check that button does not appear,
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
+
 //         * but loading text is seen instead   "Loading green..."
+        assertTrue(driver.findElement(By.xpath("//*[@id=\"loading_green\"]")).isDisplayed());
+        Thread.sleep(6000);
+
 //         * 3) check that both button
 //         * and loading text is not seen,
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"loading_green\"]")).isDisplayed());
 //         * success is seen instead "Green Loaded"
+        // Dans comment: I don't understand where "success" is supposed to appear...
+
+
     }
 
     @Test
     public void loadGreenImplicit() throws Exception {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //         TODO:
 //         * 1) click on start loading green button
+        driver.findElement(By.xpath("//*[@id=\"start_green\"]")).click();
+
 //         * 2) check that button does not appear,
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
+
 //         * but loading text is seen instead   "Loading green..."
+        assertTrue(driver.findElement(By.xpath("//*[@id=\"loading_green\"]")).isDisplayed());
+
 //         * 3) check that both button
 //         * and loading text is not seen,
-//         * success is seen instead "Green Loaded"
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
+
+        driver.findElement(By.xpath("//*[@id=\"finish_green\"]"));
+
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"loading_green\"]")).isDisplayed());
+
+//         * success is seen instead "Green Loaded" ??
     }
 
     @Test
     public void loadGreenExplicitWait() throws Exception {
 //         TODO:
 //         * 1) click on start loading green button
+        driver.findElement(By.xpath("//*[@id=\"start_green\"]")).click();
+
 //         * 2) check that button does not appear,
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
+
 //         * but loading text is seen instead   "Loading green..."
+        assertTrue(driver.findElement(By.xpath("//*[@id=\"loading_green\"]")).isDisplayed());
+
 //         * 3) check that both button
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
+
 //         * and loading text is not seen,
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@id=\"finish_green\"]")));
+
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"loading_green\"]")).isDisplayed());
+
 //         * success is seen instead "Green Loaded"
     }
 
