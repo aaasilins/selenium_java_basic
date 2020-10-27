@@ -39,6 +39,12 @@ public class Sample3Task {
 //         TODO:
 //         check how many element with class "test" there are on page (5)
 //         check that value of second button is "This is also a button"
+        int expectedLength=5;
+        int receivedLength=driver.findElements(By.className("test")).size();
+        String expectedValue="This is also a button";
+        String receivedValue=driver.findElement(By.name("randomButton2")).getAttribute("value");
+        assertEquals(expectedLength, receivedLength);
+        assertEquals(expectedValue, receivedValue);
     }
 
     @Test
@@ -47,12 +53,24 @@ public class Sample3Task {
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
 //         fail with custom error message:
+            String expectedValue="this is Also a Button";
+            String receivedValue=driver.findElement(By.name("randomButton2")).getAttribute("value");
+            try{
+                assertTrue(expectedValue==receivedValue);
+
+            }catch(AssertionError e){
+                fail("This test was a failure!");
+
+            }
     }
 
     @Test
     public void assertFalseTask() throws Exception {
 //         TODO:
 //        check that it is False that value of second button is "This is a button"
+        String expectedValue="This is a button";
+        String receivedValue=driver.findElement(By.name("randomButton2")).getAttribute("value");
+        assertFalse(expectedValue==receivedValue);
     }
 
     @Test
@@ -60,5 +78,15 @@ public class Sample3Task {
 //        TODO:
 //        check that none of items with class "test"
 //        contain number 190
+        List<WebElement> elementList = driver.findElements(By.className("test"));
+        String tempValue="";
+        for(int i=0; i<elementList.size();i++){
+            tempValue=elementList.get(i).getText();
+            for(int j=2; j< tempValue.length();j++){
+                if(tempValue.charAt(j)==0&&tempValue.charAt(j-1)==9&&tempValue.charAt(j-2)==1)fail("test class values contain 190 at index"+(j-2));
+            }
+        }
     }
+
+
 }
