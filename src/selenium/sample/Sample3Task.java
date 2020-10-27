@@ -8,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class Sample3Task {
@@ -61,12 +59,13 @@ public class Sample3Task {
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
 //         fail with custom error message:
-        String elementTextOnPage = driver.findElement(By.id("buttonId")).getAttribute("value");
+        String elementTextOnPage = driver.findElement(By.cssSelector("#buttonId")).getAttribute("value");
+        assertTrue(elementTextOnPage.equalsIgnoreCase("this is Also a Button"));
+
         try {
-            assertTrue(elementTextOnPage.equals("this is Also a Button"));
-            assertTrue("CUSTOM CATCH",elementTextOnPage.equalsIgnoreCase("tHIS IS ALSO A BUTTOn"));
+            assertTrue(elementTextOnPage.equalsIgnoreCase("THIS IS ALSO A BUTTON"));
         } catch (AssertionError e) {
-            System.err.println("Don't ignore CAPS LOCK!");
+            System.err.println("We failed with custom message”");
             e.printStackTrace();
         }
 
@@ -90,16 +89,11 @@ public class Sample3Task {
 
 //        check that none of items with class "test"
 //        contain number 190
+        String expectNumber="190";
+        WebElement w1 = driver.findElement(By.xpath("//p[@class='test']"));
+        assertFalse(w1.equals(expectNumber));
 
-       try {
-           String elementTextOnPage = driver.findElement(By.className("test")).getAttribute("value");
-           String expected = "190";
-           assertEquals(expected, elementTextOnPage);
-       }
-catch (AssertionError e) {
-    System.err.println("Class test doesn't contain number 190!");
-    e.printStackTrace();
-}
+
 
     }
 }

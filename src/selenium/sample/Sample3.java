@@ -60,11 +60,11 @@ public class Sample3 {
     @Test
     public void assertTrueExamples() throws Exception {
         String elementTextOnPage = driver.findElement(By.cssSelector(".unbelievable")).getText();
-        assertTrue(elementTextOnPage.equals("unbelievable sample text"));
+       // assertTrue(elementTextOnPage.equals("unbelievable sample text"));
 //        assertTrue("Expecting the element with class 'unbelievable' to have text 'ajshdka'", elementTextOnPage.contains("ajshdka"));
         assertTrue(elementTextOnPage.equalsIgnoreCase("unBELIEVable sAMPle Text"));
         // pass:
-        assertTrue(true);
+       // assertTrue(true);
         // fail:
 //        assertTrue(false);
     }
