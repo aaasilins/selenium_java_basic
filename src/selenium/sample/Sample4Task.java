@@ -35,15 +35,34 @@ public class Sample4Task {
     @Test
     public void enterNumber() throws Exception {
 //         TODO:
-//        enter a number under "Number"
-//        check that button is not clickable "Clear Result"
-//        check that text is not displayed
-//        click on "Result" button
-//        check that text is displayed
-//        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
-//        check that the button "Clear Result" is clickable now
-//        click on "Clear Result"
-//        check that the text is still (""), but it is not displayed
+//        enter a number under "Number" x
+//        check that button is not clickable "Clear Result"x
+//        check that text is not displayed x
+//        click on "Result" button x
+//        check that text is displayed x
+//        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"") x
+//        check that the button "Clear Result" is clickable now x
+//        click on "Clear Result" x
+//        check that the text is still (""), but it is not displayed x
+        WebElement numberBox=driver.findElement(By.id("number"));
+        WebElement resultButton=driver.findElement(By.id("result_button_number"));
+        WebElement clearButton=driver.findElement(By.id("clear_result_button_number"));
+        WebElement resultText=driver.findElement(By.id("result_number"));
+        String input="15";
+        String expectedOutput="You entered number: "+"\""+input+"\"";
+        numberBox.clear();
+        numberBox.sendKeys(input);
+        assertFalse(clearButton.isEnabled());
+        assertFalse(resultText.isDisplayed());
+        resultButton.click();
+        assertTrue(resultText.isDisplayed());
+        assertEquals(expectedOutput, resultText.getText());
+        assertTrue(clearButton.isEnabled());
+        clearButton.click();
+        assertTrue(resultText.getText().equals("")&&!resultText.isDisplayed());
+
+
+        Thread.sleep(1000);
     }
 
     @Test
@@ -53,5 +72,12 @@ public class Sample4Task {
 //        click on "This is a link to Homepage"
 //        check that current url is not base_url
 //        verify that current url is homepage
+        String currentUrl=driver.getCurrentUrl();
+        WebElement linkToHomepage=driver.findElement(By.id("homepage_link"));
+        assertEquals(base_url,currentUrl );
+        linkToHomepage.click();
+        currentUrl=driver.getCurrentUrl();
+        assertNotEquals(base_url, currentUrl);
+        assertEquals("https://kristinek.github.io/site/", currentUrl);
     }
 }

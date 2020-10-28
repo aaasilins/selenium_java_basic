@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
@@ -22,7 +23,7 @@ public class Sample5Task {
         // declaration above:
         driver = new ChromeDriver();
         //open page:
-        driver.get("https://kristinek.github.io/site/examples/alerts_popups");
+            driver.get("https://kristinek.github.io/site/examples/alerts_popups");
     }
 
     // method which is being run after each test
@@ -41,6 +42,15 @@ public class Sample5Task {
 //        verify alert text
 //        click ok on second alert
 //        verify that the correct page is opened
+        WebElement linkButton=driver.findElement(By.xpath("/html/body/div[2]/button[4]"));
+        linkButton.click();
+        Alert firstAlert=driver.switchTo().alert();
+        firstAlert.accept();
+        firstAlert=driver.switchTo().alert();
+        assertEquals("Booooooooo!", firstAlert.getText());
+        firstAlert.accept();
+        assertEquals("https://kristinek.github.io/site/examples/alerted_page", driver.getCurrentUrl());
+
     }
 
     @Test
@@ -50,5 +60,11 @@ public class Sample5Task {
 //        switch to alert
 //        click cancel
 //        verify the text on page
+        WebElement linkButton=driver.findElement(By.xpath("/html/body/div[2]/button[4]"));
+        WebElement stayMessage=driver.findElement(By.id("textForAlerts"));
+        linkButton.click();
+        Alert firstAlert=driver.switchTo().alert();
+        firstAlert.dismiss();
+        assertEquals("So you desided to say? Good!", stayMessage.getText());
     }
 }
