@@ -34,24 +34,44 @@ public class Sample4Task {
 
     @Test
     public void enterNumber() throws Exception {
+        WebElement numberArea = driver.findElement(By.id("number"));
+        WebElement clearResult = driver.findElement(By.id("clear_result_button_number"));
+        WebElement resultButton = driver.findElement(By.id("result_button_number"));
+        WebElement resultNumber = driver.findElement(By.id("result_number"));
 //         TODO:
 //        enter a number under "Number"
+            numberArea.clear();
+            numberArea.sendKeys("4");
 //        check that button is not clickable "Clear Result"
+            assertFalse(clearResult.isEnabled());
 //        check that text is not displayed
+            assertFalse(resultNumber.isDisplayed());
 //        click on "Result" button
+            resultButton.click();
 //        check that text is displayed
+            assertTrue(resultNumber.isDisplayed());
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
+            assertEquals("You entered number: \"4\"", resultNumber.getText());
 //        check that the button "Clear Result" is clickable now
+            assertTrue(clearResult.isEnabled());
 //        click on "Clear Result"
+            clearResult.click();
 //        check that the text is still (""), but it is not displayed
+            assertFalse(resultNumber.isDisplayed());
+            assertEquals("", resultNumber.getText());
     }
 
     @Test
     public void clickOnLink() throws Exception {
 //         TODO:
+
 //        check current url is base_url
+            assertEquals(driver.getCurrentUrl(), base_url);
 //        click on "This is a link to Homepage"
+            driver.findElement(By.xpath("//a[@href='/site/']")).click();
 //        check that current url is not base_url
+            assertFalse(driver.getCurrentUrl().equals(base_url));
 //        verify that current url is homepage
+            assertTrue(driver.getCurrentUrl().equals("https://kristinek.github.io/site/"));
     }
 }
