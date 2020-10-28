@@ -74,9 +74,9 @@ public class Sample9Task {
 
 //         * 3) check that both button
 //         * and loading text is not seen,
-        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
-
         driver.findElement(By.xpath("//*[@id=\"finish_green\"]"));
+
+        assertFalse(driver.findElement(By.xpath("//*[@id=\"start_green\"]")).isDisplayed());
 
         assertFalse(driver.findElement(By.xpath("//*[@id=\"loading_green\"]")).isDisplayed());
 
