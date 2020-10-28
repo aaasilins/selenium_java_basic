@@ -39,10 +39,36 @@ public class Sample7Task {
     public void selectCheckBox() throws Exception {
 //         TODO:
 //        check that none of the checkboxes are ticked
+
+        List<WebElement> checkBoxes = driver.findElements(By.cssSelector(".w3-check[type='checkbox']"));
+
+        for (WebElement checkBox : checkBoxes) {
+            assertFalse(checkBox.isSelected());
+        }
+
 //        tick  "Option 2"
+
+        WebElement checkBox2  = driver.findElement(By.id("vfb-6-1"));
+        checkBox2.click();
+        Thread.sleep(3000);
+
 //        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
+        WebElement checkBox1  = driver.findElement(By.id("vfb-6-0"));
+        WebElement checkBox3  = driver.findElement(By.id("vfb-6-2"));
+
+        assertFalse(checkBox1.isSelected());
+        assertFalse(checkBox3.isSelected());
+        assertTrue(checkBox2.isSelected());
+
+
 //        tick  "Option 3"
+
+        checkBox3.click();
+
 //        click result
+
+
+
 //        check that text 'You selected value(s): Option 2, Option 3' is being displayed
     }
 

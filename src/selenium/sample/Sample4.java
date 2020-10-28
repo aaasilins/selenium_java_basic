@@ -22,7 +22,6 @@ public class Sample4 {
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver.exe");
         // declaration above:
         driver = new ChromeDriver();
-
         //open page:
         driver.get(base_url);
     }
