@@ -57,7 +57,7 @@ public class extra2Task {
 //        check the background color of h1 element
         driver.get("https://kristinek.github.io/site/examples/po");
         Thread.sleep(1500);
-        assertEquals("rgba(0, 0, 0, 0)", driver.findElement(By.className("w3-jumbo")).getCssValue("background-color"));
+        assertEquals("rgba(0, 0, 0, 0)", driver.findElement(By.cssSelector(".w3-jumbo")).getCssValue("background-color"));
         Thread.sleep(1500);
         String bckgclr = driver.findElement(By.xpath("//h1")).getCssValue("background-color");
         Thread.sleep(1500);

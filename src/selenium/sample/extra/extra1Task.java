@@ -95,10 +95,8 @@ public class extra1Task {
        Thread.sleep(500);
         assertEquals("I am here!", show1.getText());
         driver.navigate().refresh();
-        //Thread.sleep(500);
-      // assertFalse(show1.isEnabled()); //- doesn't want to work :(
-      //  Thread.sleep(500);
-//
+        Thread.sleep(200);
+        assertFalse(driver.findElement(By.cssSelector("#show_me")).isDisplayed());
 
 
     }

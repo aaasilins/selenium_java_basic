@@ -51,6 +51,5 @@ public class Sample8Task {
 
         assertEquals("64px", h1.getCssValue("font-size"));
 
-
     }
 }
