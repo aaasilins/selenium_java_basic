@@ -6,15 +6,17 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static org.junit.Assert.*;
+
 public class Task2 {
     WebDriver driver;
 
     @Before
     public void openPage() {
-        String libWithDriversLocation = System.getProperty("user.dir") + "\\lib\\";
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver.exe");
+        String libWithDriversLocation = System.getProperty("user.dir") + "/lib/";
+        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver");
         driver = new ChromeDriver();
-        driver.get("https://kristinek.github.io/sitetasks/provide_feedback");
+        driver.get("https://kristinek.github.io/site/tasks/provide_feedback");
     }
 
     @After
