@@ -1,6 +1,7 @@
 package selenium.sample;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -34,28 +35,27 @@ public class Sample3Task {
         driver.quit();
     }
 
-    @Test ////FAILED!
+    @Test
     public void assertEqualsTask() throws Exception {
-        System.out.println("---------1---------");
 //         TODO:
 //         check how many element with class "test" there are on page (5)
         System.out.println(driver.findElements(By.className("test")).size());
 
 //         check that value of second button is "This is also a button"
-        String expected = "This is also a button";
-        String actual = driver.findElement(By.name("randomButton2")).getText();
-
-        assertEquals(expected, actual);
+        String expected1 = "This is also a button";
+        String actual1 = driver.findElement(By.id("buttonId")).getAttribute("value");
+        assertEquals(expected1, actual1);
     }
 
-    @Test //ADD a custom message
+    @Test
     public void assertTrueTask() throws Exception {
 //         TODO:
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
-        String elementTextOnPage = driver.findElement(By.xpath("/html/body/input[1]")).getText();
+        String elementTextOnPage = driver.findElement(By.id("buttonId")).getAttribute("value");
         assertTrue(elementTextOnPage.equalsIgnoreCase("this is Also a Button"));
 //         fail with custom error message:
+        System.err.println("We failed ");
     }
 
     @Test
@@ -64,9 +64,6 @@ public class Sample3Task {
 //        check that it is False that value of second button is "This is a button"
         String elementTextOnPage = driver.findElement(By.xpath("/html/body/input[1]")).getText();
         assertFalse(elementTextOnPage.equals("This is a button"));
-        // fail:
-//        assertFalse(true);
-        // pass:
         assertFalse(false);
 
     }
