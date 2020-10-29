@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Task2 {
     WebDriver driver;
 
+    //Couldn't complete task, because the page isn't opening (error 404)//
+
     @Before
     public void openPage() {
         String libWithDriversLocation = System.getProperty("user.dir") + "\\lib\\";
