@@ -114,4 +114,17 @@ public class Sample6Task {
         System.out.println("\t The name of element with value 'This is also a button' is '" +
                 driver.findElement(By.cssSelector("[value='This is also a button']")).getAttribute("name") + "'");
     }
+
+/*
+    WebElement abcd = driver.findElement(By.xpath("//p[contains(text(),'lucky paragraph 7')]"));
+        System.out.println(abcd.getText());
+    WebElement cdef = driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[2]/p[4]"));
+        System.out.println(cdef.getText());
+
+    WebElement zz = driver.findElement(By.cssSelector("body:nth-child(2) div.w3-row-padding.w3-half.w3-container:nth-child(2) div:nth-child(3) > p.paragraph.lucky.w3-pink:nth-child(4)"));
+        System.out.println(zz.getText());
+    WebElement aa = driver.findElement(By.cssSelector(".paragraph.lucky.w3-pink"));
+        System.out.println(aa.getText());
+       */
+
 }

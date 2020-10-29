@@ -99,7 +99,7 @@ public void assertTrueFailWithCustomErrorMessage() throws Exception {
     // There are two solutions - one which I tried first, and the other which
     // you provided. But I believe they are both wrong, because when you try
     // to test with input "1" or "3" the test should fail as the numbers "1"
-    // and "3" are present within the elements of "test" class. However
+    // and "3" are present within the text of elements of "test" class. However
     // in both ways with such input the test is passed.
     // Or am I wrong and "value” attribute of the elements doesn't count
     // for item containing the number?
