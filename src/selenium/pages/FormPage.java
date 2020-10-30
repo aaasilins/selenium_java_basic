@@ -13,32 +13,46 @@ public class FormPage {
     }
     @FindBy(how = How.ID, using = "name") // By.id("name")
     private WebElement nameInput; // WebElement nameInput = driver.findElement(By.id("name"));
-    @FindBy(how = How.ID, using = "surname")
-    private WebElement surnameInput;
     @FindBy(how = How.ID, using = "job")
     private WebElement jobInput;
-    @FindBy(how = How.CLASS_NAME, using = "dob")
-    private WebElement dob;
-    @FindBy(how = How.CLASS_NAME, using = "english")
-    private WebElement english;
-    @FindBy(how = How.CLASS_NAME, using = "french")
-    private WebElement french;
-    @FindBy(how = How.CLASS_NAME, using = "spanish")
-    private WebElement spanish;
-    @FindBy(how = How.CLASS_NAME, using = "male")
-    private WebElement male;
-    @FindBy(how = How.CLASS_NAME, using = "female")
-    private WebElement female;
-    @FindBy(how = How.CLASS_NAME, using = "status")
-    private WebElement status;
     @FindBy(how = How.ID, using = "modal_button")
-    private WebElement add;
+    private WebElement submit;
+    @FindBy(how = How.CSS, using = "#addEditPerson > div > button:nth-child(2)")
+    private WebElement cancel;
 
-    public void addPerson(String name, String surname, String job){
+    public void enterName(String name){
+        nameInput.clear();
         nameInput.sendKeys(name);
-        surnameInput.sendKeys(surname);
+    }
+    public void enterJob(String job){
+        jobInput.clear();
         jobInput.sendKeys(job);
-        add.click();
+    }
+    public void clickSubmit(){
+        submit.click();
+    }
+    public void enterNameJobAndSubmit(String name, String job){
+        enterName(name);
+        enterJob(job);
+        submit.click();
+    }
+    public void enterNameAndJob(String name, String job){
+        enterName(name);
+        enterJob(job);
+    }
+    public void editNameJobAndSubmit(String name, String job){
+        nameInput.clear();
+        jobInput.clear();
+        enterName(name);
+        enterJob(job);
+        submit.click();
+    }
+    public void editNameJobAndCancel(String name, String job){
+        nameInput.clear();
+        jobInput.clear();
+        enterName(name);
+        enterJob(job);
+        cancel.click();
     }
 }
 

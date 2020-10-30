@@ -109,7 +109,7 @@ public class Sample7Task {
         WebElement dateBox = driver.findElement(By.id("vfb-8"));
         dateBox.click();
 //        enter date '4 of July 2007' using calendar widget
-        for (int i = 0; i < 159; i++) {
+        for (int i = 0; i < 159; i++) { //IMPORTANT !!! This test wont pass if current month changes, so for next month value must be 160
             dateWidget.findElement(By.className("ui-datepicker-prev")).click();
         }
         dateWidget.findElement(By.xpath("//a[text()='4']")).click();

@@ -38,7 +38,7 @@ public class Sample9Task {
         WebElement greenButton = driver.findElement(By.id("start_green"));
 //         * 1) click on start loading green button
         greenButton.click();
-        Thread.sleep(100);
+        Thread.sleep(1000);
 //         * 2) check that button does not appear,
         assertFalse(greenButton.isDisplayed());
 //         * but loading text is seen instead   "Loading green..."
